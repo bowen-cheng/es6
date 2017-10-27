@@ -1,0 +1,22 @@
+{
+  "name": "practise-es6",
+  "version": "1.0.0",
+  "description": "My daily learning plan for ES6",
+  "dependencies": {},
+  "devDependencies": {
+    "mocha": "^4.0.1"
+  },
+  "scripts": {
+    "test": "mocha --recursive"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/conan-z/practise-es6.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/conan-z/practise-es6/issues"
+  },
+  "homepage": "https://github.com/conan-z/practise-es6#readme"
+}
