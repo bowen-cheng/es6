@@ -2,47 +2,59 @@
 
 const assert = require('assert');
 
-class Employee {
-  constructor(name = 'anonymous', salary = 0) {
-    // Setting fields by directly manipulating the backing properties
+class Human {
+  constructor(name = 'Human') {
+    // Setting fields by directly manipulating the backing property
     this._name = name;
-    this._salary = salary;
-
     // Setting fields by calling setters
     this.name = name;
-    this.salary = salary;
+  }
+
+  run() {
+    return `${this._name} is running`;
   }
 
   get name() {
-    return "Getter: " + this._name;
+    return `Getter: ${this._name}`;
   }
 
   set name(name) {
     this._name = name;
   }
+}
 
-  get salary() {
-    return "Getter: " + this._salary;
+class Employee extends Human {
+  constructor(name = 'Employee', salary = 0) {
+    super(name);
+    this._salary = salary;
   }
 
-  set salary(salary) {
-    this._salary = salary;
+  get salary() {
+    return this._salary;
   }
 }
 
 describe('the class keyword', function () {
-  const anonymous = new Employee();
+
+  const aHuman = new Human();
+  const anEmployee = new Employee();
 
   it('can have one and only one constructor function', function () {
     // Using properties directly
-    assert.equal(anonymous._name, 'anonymous');
-    assert.equal(anonymous._salary, 0);
+    assert.equal(aHuman._name, 'Human');
   });
 
   it('can have getters and setters', function () {
     // Using Getter functions
-    assert.equal(anonymous.name, 'Getter: anonymous');
-    assert.equal(anonymous.salary, 'Getter: 0');
+    assert.equal(aHuman.name, 'Getter: Human');
   });
 
+  it('can have a super class', function () {
+    assert.equal(anEmployee.name, 'Getter: Employee');
+    assert.equal(anEmployee.salary, 0);
+  });
+
+  it('can invoke super methods', function () {
+    assert.equal(anEmployee.run(), 'Employee is running')
+  })
 });
