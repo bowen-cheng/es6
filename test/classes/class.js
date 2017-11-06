@@ -14,6 +14,10 @@ class Human {
     return `${this._name} is running`;
   }
 
+  work() {
+    return `${this._name} is working`;
+  }
+
   get name() {
     return `Getter: ${this._name}`;
   }
@@ -29,12 +33,17 @@ class Employee extends Human {
     this._salary = salary;
   }
 
+  work() {
+    let responseFromSuperClass = super.work();
+    return `Alert!!! ${responseFromSuperClass}`;
+  }
+
   get salary() {
     return this._salary;
   }
 }
 
-describe('the class keyword', function () {
+describe('The class keyword', function () {
 
   const aHuman = new Human();
   const anEmployee = new Employee();
@@ -53,8 +62,12 @@ describe('the class keyword', function () {
     assert.equal(anEmployee.name, 'Getter: Employee');
     assert.equal(anEmployee.salary, 0);
   });
-
   it('can invoke super methods', function () {
     assert.equal(anEmployee.run(), 'Employee is running')
-  })
+  });
+
+  it('can override methods', function () {
+    assert.equal(aHuman.work(), 'Human is working');
+    assert.equal(anEmployee.work(), 'Alert!!! Employee is working');
+  });
 });
