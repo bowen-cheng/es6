@@ -2,6 +2,7 @@
 
 const assert = require('assert');
 
+// The super class implicitly extends 'Object' class
 class Human {
   constructor(name = 'Human') {
     // Setting fields by directly manipulating the backing property
@@ -19,7 +20,7 @@ class Human {
   }
 
   get name() {
-    return `Getter: ${this._name}`;
+    return `${this._name}`.toUpperCase();
   }
 
   set name(name) {
@@ -36,6 +37,11 @@ class Employee extends Human {
   work() {
     let responseFromSuperClass = super.work();
     return `Alert!!! ${responseFromSuperClass}`;
+  }
+
+  // Overriding method from 'Object' class
+  toString() {
+    return `Employee: ${this.name}`;
   }
 
   get salary() {
@@ -55,13 +61,14 @@ describe('The class keyword', function () {
 
   it('can have getters and setters', function () {
     // Using Getter functions
-    assert.equal(aHuman.name, 'Getter: Human');
+    assert.equal(aHuman.name, 'HUMAN');
   });
 
   it('can have a super class', function () {
-    assert.equal(anEmployee.name, 'Getter: Employee');
+    assert.equal(anEmployee.name, 'EMPLOYEE');
     assert.equal(anEmployee.salary, 0);
   });
+
   it('can invoke super methods', function () {
     assert.equal(anEmployee.run(), 'Employee is running')
   });
@@ -69,5 +76,6 @@ describe('The class keyword', function () {
   it('can override methods', function () {
     assert.equal(aHuman.work(), 'Human is working');
     assert.equal(anEmployee.work(), 'Alert!!! Employee is working');
+    assert.equal(anEmployee.toString(), 'Employee: EMPLOYEE');
   });
 });
