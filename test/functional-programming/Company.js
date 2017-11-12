@@ -7,12 +7,19 @@ class Company {
     this.employees = this.employees.concat(names);
   }
 
-  [Symbol.iterator]() {
-    // Delegate the iterator to a generically reusable class
-    return new ArrayIterator(this.employees);
+  // make the iterator property a generator function
+  * [Symbol.iterator]() {
+    // return new ArrayIterator(this.employees);
+    for (let e of this.employees) {
+      console.log(e);
+      yield e;
+    }
   }
 }
 
+/**
+ * The class is replaced by making iterator property a generator function
+ */
 class ArrayIterator {
   constructor(array) {
     this.array = array;

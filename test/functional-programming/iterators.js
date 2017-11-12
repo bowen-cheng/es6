@@ -45,4 +45,9 @@ describe('Iterables', function () {
     }
     assert.equal(count, 4);
   });
+
+  it('works with generator function', function () {
+
+  });
+
 });
