@@ -40,14 +40,34 @@ describe('Iterables', function () {
     let company = new Company();
     company.addEmployees('Tim', 'Bob', 'Joy', 'Tom');
 
-    for (let employee of company) { // Using the iterator of Company class
-      count += 1;
+    function* filter(emelents, predicate) {
+      for (let element of emelents) {
+        console.log('Filtering: ', element);
+        if (predicate(element)) {
+          yield element;
+        }
+      }
+    }
+
+    function* take(elements, maxToTake) {
+      let count = 0;
+      if (maxToTake < 1) {
+        return;
+      }
+
+      for (let element of elements) {
+        console.log('Taking: ', element);
+        yield element;
+        count++;
+        if (count >= maxToTake) {
+          return
+        }
+      }
+    }
+
+    for (let employee of take(filter(company, e => e[0] === 'T'))) { // Using the iterator of Company class
+      count += 2;
     }
     assert.equal(count, 4);
   });
-
-  it('works with generator function', function () {
-
-  });
-
 });
