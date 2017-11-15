@@ -40,8 +40,8 @@ describe('Iterables', function () {
     let company = new Company();
     company.addEmployees('Tim', 'Bob', 'Joy', 'Tom');
 
-    function* filter(emelents, predicate) {
-      for (let element of emelents) {
+    function* filter(element, predicate) {
+      for (let element of element) {
         console.log('Filtering: ', element);
         if (predicate(element)) {
           yield element;
@@ -65,7 +65,8 @@ describe('Iterables', function () {
       }
     }
 
-    for (let employee of take(filter(company, e => e[0] === 'T'))) { // Using the iterator of Company class
+    // Using the iterator of Company class
+    for (let employee of take(filter(company, e => e[0] === 'T'))) {
       count += 2;
     }
     assert.equal(count, 4);
