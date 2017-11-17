@@ -40,8 +40,8 @@ describe('Iterables', function () {
     let company = new Company();
     company.addEmployees('Tim', 'Bob', 'Joy', 'Tom');
 
-    function* filter(element, predicate) {
-      for (let element of element) {
+    function* filter(elements, predicate) {
+      for (let element of elements) {
         console.log('Filtering: ', element);
         if (predicate(element)) {
           yield element;
