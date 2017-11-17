@@ -36,15 +36,4 @@ describe('Weak map', function () {
     weakMap.delete(key);
     assert.equal(weakMap.has(key), false);
   });
-
-  it('can remove all items with clear', function () {
-    let weakMap = new WeakMap();
-    let key1 = {keyName: 'key1'};
-    let key2 = {keyName: 'key2'};
-    weakMap.set(key1, 'value1');
-    weakMap.set(key2, 'value2');
-    weakMap.clear();
-    assert.equal(weakMap.has(key1), false);
-    assert.equal(weakMap.has(key2), false);
-  });
 });

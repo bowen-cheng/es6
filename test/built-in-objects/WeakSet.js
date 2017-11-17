@@ -26,15 +26,4 @@ describe('Weak set', function () {
     weakSet.delete(item);
     assert.equal(weakSet.has(item), false);
   });
-
-  it('can remove all items with clear', function () {
-    let weakSet = new WeakSet();
-    let item1 = {name: 'Bill'};
-    let item2 = {name: 'John'};
-    weakSet.add(item1);
-    weakSet.add(item2);
-    weakSet.clear();
-    assert.equal(weakSet.has(item1), false);
-    assert.equal(weakSet.has(item2), false);
-  });
 });
