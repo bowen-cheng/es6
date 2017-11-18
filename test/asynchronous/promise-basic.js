@@ -2,7 +2,7 @@
 
 const assert = require('assert');
 
-describe('Promises', function () {
+describe('Promises (basic)', function () {
   it('should execute the call back given to them', function (done) {
     let promise = new Promise(function (resolve, reject) {
       // Both resolve and reject are functions
