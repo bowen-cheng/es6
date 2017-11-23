@@ -20,7 +20,7 @@ let async;
 
   async = {
     run: run,
-    resume: resume,
+    resume: resume
   };
 }());
 
