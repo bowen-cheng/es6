@@ -71,6 +71,46 @@ describe('Object', function () {
         };
         assert.equal(server.getPort(), 8080);
       });
-    })
+
+      describe('computed property names', function () {
+        it('should support variables for property names', function () {
+          function createObjectOld(propertyName, propertyValue) {
+            const object = {};
+            object[propertyName] = propertyValue;
+            return object;
+          }
+
+          // same as below:
+          function createObjectNew(propertyName, propertyValue) {
+            return {
+              [propertyName]: propertyValue
+            }
+          }
+
+          const oldWay = createObjectOld('name', 'value');
+          const newWay = createObjectNew('name', 'value');
+          assert.equal(oldWay.name, newWay.name);
+        });
+
+        it('should support concatenation', function () {
+          function threeManBasketBallTeam(first, second, third) {
+            return {
+              ['member_' + first.name]: first,
+              ['member_' + second.name]: second,
+              ['member_' + third.name]: third
+            };
+          }
+
+          const joe = {name: 'Joe'};
+          const bill = {name: 'Bill'};
+          const ann = {name: 'Ann'};
+          const team = threeManBasketBallTeam(joe, bill, ann);
+
+          assert.equal(team.member_Joe, joe);
+          assert.equal(team.member_Bill, bill);
+          assert.equal(team.member_Ann, ann);
+        });
+      });
+    });
   });
 });
