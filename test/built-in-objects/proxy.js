@@ -33,8 +33,11 @@ describe('Proxies', function () {
 
     assert.equal(unicornProxy.legs, 4);
 
+    // Operating on the proxy object, not the original one
     unicornProxy.color = 'white';
     assert.equal(unicornProxy.color, 'Beautiful white');
+    // The property of the original object is also changed
+    assert.equal(unicorn.color, 'white');
 
     assert.throws(() => {
       unicornProxy.horn = false;
